@@ -27,9 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           registerUser();
@@ -39,6 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            GestureDetector(
+              onTap: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              child: Container(
+                height: 50,
+                width: 50,
+                color: Colors.red,
+              ),
+            ),
             SizedBox(
               height: 6,
             ),
